@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGPA Booster - Demo & Features</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .demo-section {
+            padding: 60px 0;
+            background: #f8fafc;
+        }
+        
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .feature-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .demo-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .stats-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .stat-item {
+            padding: 2rem;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        .calculator-form {
+            margin: 2rem 0;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .calculator-results {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+
+        .courses-list {
+            margin-top: 1rem;
+        }
+
+        .course-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem;
+            background: white;
+            margin: 0.5rem 0;
+            border-radius: 4px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .course-info {
+            flex: 1;
+        }
+
+        .course-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>CGPA Booster</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#stats" class="nav-link">Stats</a></li>
+                <li><a href="#demo" class="nav-link">Demo</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Platform Demo & Features</h1>
+                <p class="hero-subtitle">Explore the advanced capabilities and innovative features that make CGPA Booster the ultimate academic companion for students worldwide.</p>
+                <div class="hero-buttons">
+                    <a href="index.html" class="btn btn-primary">
+                        <i class="fas fa-home"></i>
+                        Back to Main
+                    </a>
+                    <a href="index.html#dashboard" class="btn btn-outline">
+                        <i class="fas fa-chart-line"></i>
+                        Go to Dashboard
+                    </a>
+                    <a href="#features" class="btn btn-secondary">
+                        <i class="fas fa-rocket"></i>
+                        View Features
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="demo-section">
+        <div class="demo-container">
+            <h2 class="section-title">Advanced Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Smart CGPA Calculator</h3>
+                    <p>Advanced grade point calculation with support for various grading systems and credit weights.</p>
+                    <div class="demo-buttons">
+                        <button class="btn btn-outline" onclick="showCalculatorDemo()">Try Calculator</button>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Intelligent Search</h3>
+                    <p>AI-powered search functionality that understands context and provides relevant results instantly.</p>
+                    <div class="demo-buttons">
+                        <button class="btn btn-outline" onclick="showSearchDemo()">Demo Search</button>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Progress Analytics</h3>
+                    <p>Visual progress tracking with detailed analytics and performance insights.</p>
+                    <div class="demo-buttons">
+                        <button class="btn btn-outline" onclick="showAnalyticsDemo()">View Analytics</button>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Study Groups</h3>
+                    <p>Create and join study groups, collaborate with peers, and share resources seamlessly.</p>
+                    <div class="demo-buttons">
+                        <button class="btn btn-outline" onclick="showGroupsDemo()">Join Groups</button>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile First</h3>
+                    <p>Optimized for all devices with touch-friendly interface and responsive design.</p>
+                    <div class="demo-buttons">
+                        <button class="btn btn-outline" onclick="showMobileDemo()">Mobile View</button>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure & Private</h3>
+                    <p>Enterprise-grade security with data encryption and privacy protection.</p>
+                    <div class="demo-buttons">
+                        <button class="btn btn-outline" onclick="showSecurityDemo()">Security Info</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats-section">
+        <div class="demo-container">
+            <h2 class="section-title" style="color: white;">Platform Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">50K+</span>
+                    <span class="stat-label">Active Students</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">1000+</span>
+                    <span class="stat-label">Study Resources</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Study Groups</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">Success Rate</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="demo-section">
+        <div class="demo-container">
+            <h2 class="section-title">Interactive Demos</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>CGPA Calculator Demo</h3>
+                    <p>Experience the interactive CGPA calculation system with sample data.</p>
+                    <div class="demo-buttons">
+                        <button class="btn btn-primary" onclick="openCalculatorModal()">Open Calculator</button>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Resource Library Demo</h3>
+                    <p>Browse through the comprehensive study resource collection.</p>
+                    <div class="demo-buttons">
+                        <button class="btn btn-primary" onclick="openResourceModal()">Browse Resources</button>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Dashboard Demo</h3>
+                    <p>Explore the student dashboard with interactive elements.</p>
+                    <div class="demo-buttons">
+                        <button class="btn btn-primary" onclick="openDashboardModal()">View Dashboard</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2k25 CGPA Booster. All rights reserved.</p>
+            <p>Created  By ❤️𝓢𝓾𝓷𝓲𝓵 𝓢𝓱𝓪𝓻𝓶𝓪❤️</p>
+        </div>
+    </footer>
+
+    <!-- Modal Templates -->
+    <div id="calculatorModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>CGPA Calculator</h2>
+            <div class="calculator-form">
+                <div class="form-group">
+                    <label>Course Name:</label>
+                    <input type="text" id="courseName" placeholder="Enter course name">
+                </div>
+                <div class="form-group">
+                    <label>Credits:</label>
+                    <input type="number" id="courseCredits" placeholder="Enter credits" min="1" max="6">
+                </div>
+                <div class="form-group">
+                    <label>Grade:</label>
+                    <select id="courseGrade">
+                        <option value="A+">A+ (4.0)</option>
+                        <option value="A">A (4.0)</option>
+                        <option value="A-">A- (3.7)</option>
+                        <option value="B+">B+ (3.3)</option>
+                        <option value="B">B (3.0)</option>
+                        <option value="B-">B- (2.7)</option>
+                        <option value="C+">C+ (2.3)</option>
+                        <option value="C">C (2.0)</option>
+                        <option value="C-">C- (1.7)</option>
+                        <option value="D+">D+ (1.3)</option>
+                        <option value="D">D (1.0)</option>
+                        <option value="F">F (0.0)</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" onclick="addCourse()">Add Course</button>
+                <button class="btn btn-outline" onclick="resetCalculator()">Reset</button>
+            </div>
+            <div class="calculator-results">
+                <h3>Current CGPA: <span id="currentCGPA">0.00</span></h3>
+                <div class="courses-list" id="coursesList"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Demo functionality
+        function showCalculatorDemo() {
+            openCalculatorModal();
+        }
+
+        function showSearchDemo() {
+            alert('Search Demo: Type "mathematics" or "programming" to see intelligent search in action!');
+        }
+
+        function showAnalyticsDemo() {
+            alert('Analytics Demo: View your academic progress with interactive charts and insights!');
+        }
+
+        function showGroupsDemo() {
+            alert('Study Groups Demo: Join existing groups or create new ones to collaborate with peers!');
+        }
+
+        function showMobileDemo() {
+            alert('Mobile Demo: Resize your browser window to see the responsive design in action!');
+        }
+
+        function showSecurityDemo() {
+            alert('Security Demo: Your data is protected with enterprise-grade encryption and privacy controls!');
+        }
+
+        // Modal functionality
+        function openCalculatorModal() {
+            document.getElementById('calculatorModal').style.display = 'block';
+        }
+
+        function openResourceModal() {
+            alert('Resource Library Demo: Browse through thousands of study materials, notes, and tutorials!');
+        }
+
+        function openDashboardModal() {
+            alert('Dashboard Demo: Track your academic progress, set goals, and monitor your performance!');
+        }
+
+        // Close modal when clicking on X
+        document.querySelectorAll('.close').forEach(closeBtn => {
+            closeBtn.onclick = function() {
+                this.closest('.modal').style.display = 'none';
+            }
+        });
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+
+        // CGPA Calculator functionality
+        let courses = [];
+        let totalCredits = 0;
+        let totalGradePoints = 0;
+
+        function addCourse() {
+            const courseName = document.getElementById('courseName').value;
+            const credits = parseInt(document.getElementById('courseCredits').value);
+            const grade = document.getElementById('courseGrade').value;
+
+            if (!courseName || !credits || credits < 1 || credits > 6) {
+                alert('Please enter valid course information');
+                return;
+            }
+
+            const gradePoints = getGradePoints(grade);
+            const course = {
+                name: courseName,
+                credits: credits,
+                grade: grade,
+                gradePoints: gradePoints
+            };
+
+            courses.push(course);
+            totalCredits += credits;
+            totalGradePoints += (credits * gradePoints);
+
+            updateCalculatorDisplay();
+            clearForm();
+        }
+
+        function getGradePoints(grade) {
+            const gradeMap = {
+                'A+': 4.0, 'A': 4.0, 'A-': 3.7,
+                'B+': 3.3, 'B': 3.0, 'B-': 2.7,
+                'C+': 2.3, 'C': 2.0, 'C-': 1.7,
+                'D+': 1.3, 'D': 1.0, 'F': 0.0
+            };
+            return gradeMap[grade] || 0.0;
+        }
+
+        function updateCalculatorDisplay() {
+            const cgpa = totalCredits > 0 ? (totalGradePoints / totalCredits).toFixed(2) : '0.00';
+            document.getElementById('currentCGPA').textContent = cgpa;
+
+            const coursesList = document.getElementById('coursesList');
+            coursesList.innerHTML = '';
+
+            courses.forEach((course, index) => {
+                const courseItem = document.createElement('div');
+                courseItem.className = 'course-item';
+                courseItem.innerHTML = `
+                    <div class="course-info">
+                        <strong>${course.name}</strong> - ${course.credits} credits - ${course.grade}
+                    </div>
+                    <div class="course-actions">
+                        <button class="btn btn-outline btn-small" onclick="removeCourse(${index})">Remove</button>
+                    </div>
+                `;
+                coursesList.appendChild(courseItem);
+            });
+        }
+
+        function removeCourse(index) {
+            const course = courses[index];
+            totalCredits -= course.credits;
+            totalGradePoints -= (course.credits * course.gradePoints);
+            courses.splice(index, 1);
+            updateCalculatorDisplay();
+        }
+
+        function resetCalculator() {
+            courses = [];
+            totalCredits = 0;
+            totalGradePoints = 0;
+            updateCalculatorDisplay();
+            clearForm();
+        }
+
+        function clearForm() {
+            document.getElementById('courseName').value = '';
+            document.getElementById('courseCredits').value = '';
+            document.getElementById('courseGrade').value = 'A+';
+        }
+
+        // Initialize calculator
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCalculatorDisplay();
+        });
+    </script>
+</body>
+</html>
